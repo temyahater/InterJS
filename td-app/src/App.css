@@ -4,37 +4,37 @@
   border: 1px solid rgb(220, 220, 220);
 }
 
-.App-submit{
+.App-submit {
   min-width: 50%;
   height: 30%;
   border: 1px solid rgb(220, 220, 220);
 }
 
-.App-submit .nav{
+.App-submit .nav {
   height: 35%;
 }
 
-.App-submit .submit-task{
+.App-submit .submit-task {
   height: 65%;
 }
 
-.nav{
+.nav {
   width: 100%;
   height: 10%;
-  background:  rgb(235, 235, 235);
+  background: rgb(235, 235, 235);
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: 2.5vw;
 }
 
-.list{
+.list {
   width: 100%;
   min-height: 75%;
   background: white;
 }
 
-.list .list-element{
+.list .list-element {
   width: 100%;
   /* height: 10%; */
   background: rgb(235, 235, 235);
@@ -47,18 +47,18 @@
   margin-top: 1%;
 }
 
-.list .list-element:hover{
+.list .list-element:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.list .list-element .list-element-date{
+.list .list-element .list-element-date {
   width: max-content;
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.list .list-element .list-element-task{
+.list .list-element .list-element-task {
   min-width: 80%;
   height: 100%;
   display: flex;
@@ -68,7 +68,7 @@
   padding-left: 2%;
 }
 
-.list .list-element .list-element-remove{
+.list .list-element .list-element-remove {
   min-width: 5%;
   height: 90%;
   background: rgb(139, 139, 139);
@@ -79,19 +79,19 @@
   transition: 0.3s ease-in-out;
 }
 
-.list .list-element .list-element-remove:hover{
+.list .list-element .list-element-remove:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 
-.submit-task{
+.submit-task {
   width: 100%;
   height: 15%;
   display: flex;
   background: rgb(220, 220, 220);
 }
 
-.submit-task .submit-input{
+.submit-task .submit-input {
   width: 70%;
   height: 100%;
   display: flex;
@@ -99,7 +99,7 @@
   align-items: center;
 }
 
-.submit-task .submit-input input{
+.submit-task .submit-input input {
   width: 90%;
   height: 40%;
   font-size: 1.5vw;
@@ -108,7 +108,7 @@
   border-radius: 5px;
 }
 
-.submit-task .submit-buttons{
+.submit-task .submit-buttons {
   width: 30%;
   height: 100%;
   display: flex;
@@ -116,7 +116,7 @@
   align-items: center;
 }
 
-.submit-task .submit-buttons button{
+.submit-task .submit-buttons button {
   width: 50%;
   font-size: 1.5vw;
   border: none;
@@ -126,7 +126,7 @@
   transition: 0.3s ease-in-out;
 }
 
-.submit-task .submit-buttons button:hover{
+.submit-task .submit-buttons button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
