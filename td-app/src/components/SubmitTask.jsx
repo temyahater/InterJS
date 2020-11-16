@@ -9,9 +9,9 @@ const SubmitTask=props=>{
                 date:date.toLocaleDateString(),
                 task:taskText
             };
-            props.submitTask([...props.tasks,taskSubmit]);
+            props.submitTask(taskSubmit);
         }
-        document.getElementById('task').value='';
+        document.getElementById('task').value=''; //polnoe gg
     }
 
     const handlePressSubmit=key=>{

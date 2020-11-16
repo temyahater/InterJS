@@ -2,15 +2,10 @@ import ListElement from "./ListElement";
 
 const List=props=>{
 
-    const handleClickDelete=task=>{
-        const taskFilter=props.tasks.filter(e=>e.id!==task.id)
-        props.updateTasks(taskFilter);
-    }
-
     return (
     <div className="list">
     {
-        props.tasks.map(task=><ListElement key={task.id} deleteClick={handleClickDelete} task={task}/>)
+        props.tasks.map(task=><ListElement key={task[0]} databaseTaskId={task[0]} deleteClick={props.updateTasks} task={task[1]}/>)
     }
     </div>
     );
