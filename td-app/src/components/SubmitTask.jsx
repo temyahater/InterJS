@@ -5,17 +5,18 @@ const SubmitTask = (props) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputValue = () => {
-    setInputValue(document.getElementById("task").value.trim());
+    setInputValue(document.getElementById("task").value);
   };
 
   const handleClickSubmit = () => {
     handleInputValue();
-    if (inputValue) {
+    const taskText=inputValue.trim();
+    if (taskText) {
       const date = new Date();
       const taskSubmit = {
         id: date.getTime(),
         date: date.toLocaleDateString(),
-        task: inputValue,
+        task: taskText,
       };
       props.submitTask(taskSubmit);
     }
