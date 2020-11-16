@@ -10,7 +10,7 @@ const SubmitTask = (props) => {
 
   const handleClickSubmit = () => {
     handleInputValue();
-    const taskText=inputValue.trim();
+    const taskText = inputValue.trim();
     if (taskText) {
       const date = new Date();
       const taskSubmit = {
@@ -29,6 +29,16 @@ const SubmitTask = (props) => {
     }
   };
 
+  const handleViewTasks = () => {
+    if (inputValue) {
+      if (window.confirm("Are you shure? Input is not empty.")) {
+        document.location.href = "http://localhost:3000";
+      }
+    } else {
+      document.location.href = "http://localhost:3000";
+    }
+  };
+
   return (
     <div className="submit-task">
       <div className="submit-input">
@@ -42,6 +52,7 @@ const SubmitTask = (props) => {
       </div>
       <div className="submit-buttons">
         <button onClick={handleClickSubmit}>Add</button>
+        <button onClick={handleViewTasks}>View tasks</button>
       </div>
     </div>
   );

@@ -50,10 +50,10 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/tasks">
+        <Route exact path="/">
           <TasksView tasks={tasks} handleTasksClick={handleTaskDeleteClick} />
         </Route>
-        <Route path="/submit">
+        <Route exact path="/submit">
           <TasksSubmit handleTasksClick={handleTasksAddClick} />
         </Route>
       </Switch>

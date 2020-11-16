@@ -112,7 +112,8 @@
   width: 30%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -128,5 +129,17 @@
 
 .submit-task .submit-buttons button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.task-add {
+  font-size: 2vw;
+  width: 100%;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.task-add:hover {
+  background: rgb(224, 224, 224);
   cursor: pointer;
 }
