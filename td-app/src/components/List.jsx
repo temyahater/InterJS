@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ListElement from "./ListElement";
+import { ListProps } from "../interfaces";
 
-const List = (props) => {
+const List = (props: ListProps) => {
   return (
     <div className="list">
       {props.tasks.map((task) => (
@@ -15,11 +15,6 @@ const List = (props) => {
       ))}
     </div>
   );
-};
-
-List.propTypes = {
-  tasks: PropTypes.array,
-  updateTasks: PropTypes.func,
 };
 
 export default List;

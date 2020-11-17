@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { SubmitTaskProps } from "../interfaces";
 
-const SubmitTask = (props) => {
+const SubmitTask = (props: SubmitTaskProps) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputValue = () => {
@@ -32,10 +32,10 @@ const SubmitTask = (props) => {
   const handleViewTasks = () => {
     if (inputValue) {
       if (window.confirm("Are you shure? Input is not empty.")) {
-        document.location.href = "http://localhost:3000";
+        document.location.href = "http://localhost:3000/tasks";
       }
     } else {
-      document.location.href = "http://localhost:3000";
+      document.location.href = "http://localhost:3000/tasks";
     }
   };
 
@@ -56,10 +56,6 @@ const SubmitTask = (props) => {
       </div>
     </div>
   );
-};
-
-SubmitTask.propTypes = {
-  submitTask: PropTypes.func,
 };
 
 export default SubmitTask;

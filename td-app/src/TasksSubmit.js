@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./App.css";
 import Nav from "./components/Nav";
 import SubmitTask from "./components/SubmitTask";
+import { TasksSubmitProps } from "./interfaces";
 
-function TasksSubmit(props) {
+function TasksSubmit(props: TasksSubmitProps) {
   return (
     <div className="App-submit">
       <Nav date={new Date()} />
@@ -12,9 +12,5 @@ function TasksSubmit(props) {
     </div>
   );
 }
-
-TasksSubmit.propTypes = {
-  handleTasksClick: PropTypes.func,
-};
 
 export default TasksSubmit;
