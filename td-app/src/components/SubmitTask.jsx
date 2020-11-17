@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { SubmitTaskProps } from "../interfaces";
 
-const SubmitTask = (props: SubmitTaskProps) => {
+const SubmitTask = ({ user, database }: SubmitTaskProps) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputValue = () => {
     setInputValue(document.getElementById("task").value);
+  };
+
+  const handleTasksAddClick = (task) => {
+    database
+      .ref("/users/" + user + "/tasks")
+      .push()
+      .set(task);
   };
 
   const handleClickSubmit = () => {
@@ -18,7 +25,7 @@ const SubmitTask = (props: SubmitTaskProps) => {
         date: date.toLocaleDateString(),
         task: taskText,
       };
-      props.submitTask(taskSubmit);
+      handleTasksAddClick(taskSubmit);
     }
     setInputValue("");
   };

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { AppEnterProps } from "../interfaces";
 
-const AppEnter = (props: AppEnterProps) => {
+const AppEnter = ({ handleUserRegister, handleUserEnter }: AppEnterProps) => {
   const [checkRegister, setRegister] = useState(false);
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
-
-  //   useEffect(() => setUserInfo({ email: "", password: "" }), []);
 
   const handleCheckRegisterClick = () => {
     setRegister(!checkRegister);
@@ -18,41 +16,14 @@ const AppEnter = (props: AppEnterProps) => {
     });
   };
 
-  //   const handleEnterClick = () => {
-  //     const validateEmail = /\S+@\S+\.\S+/.test(userInfo.email);
-  //     const validatePassword = /^[a-zA-Z0-9]{6,}$/.test(userInfo.password);
-
-  //     if (checkRegister) {
-  //       if (validateEmail) {
-  //         if (validatePassword) {
-  //   props.handleUserRegister({
-  //     email: userInfo.email,
-  //     password: userInfo.password,
-  //   });
-  //         } else {
-  //           setUserInfo({ email: userInfo.email, password: "" });
-  //           alert("Uncorrect password");
-  //         }
-  //       } else {
-  //         alert("Uncorrect email");
-  //       }
-  //     } else {
-  // props.handleUserEnter({
-  //   email: userInfo.email,
-  //   password: userInfo.password,
-  // });
-  //     }
-  //   };
-  //mysor (no malo li prigoditsya)
-
   const handleEnterClick = () => {
     if (checkRegister) {
-      props.handleUserRegister({
+      handleUserRegister({
         email: userInfo.email,
         password: userInfo.password,
       });
     } else {
-      props.handleUserEnter({
+      handleUserEnter({
         email: userInfo.email,
         password: userInfo.password,
       });

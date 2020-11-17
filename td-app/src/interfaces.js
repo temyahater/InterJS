@@ -1,5 +1,6 @@
 export interface TasksSubmitProps {
-  handleTasksClick: Function;
+  user: String;
+  database: Object;
 }
 
 export interface AppEnterProps {
@@ -17,26 +18,32 @@ export interface AuthProps {
 }
 
 export interface TasksViewProps {
-  handleTasksClick: Function;
+  user: String;
+  database: Object;
   tasks: Array;
   handleUserOut: Function;
+  setTasks: Function;
 }
 
 export interface SubmitTaskProps {
-  submitTask: Function;
+  user: String;
+  database: Object;
 }
 
 export interface NavProps {
-  submitTask: Function;
+  date: Date;
 }
 
 export interface ListProps {
   tasks: Array;
-  updateTasks: Function;
+  user: String;
+  database: Object;
+  setTasks: Function;
 }
 
 export interface ListElementProps {
-  tasks: Object;
-  deleteClick: Function;
   databaseTaskId: String;
+  task: Object;
+  database: Object;
+  handleTaskDeleteClick: Function;
 }

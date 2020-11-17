@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { database } from "./FireBaseConfig";
 import { auth } from "./FireBaseConfig";
+import {
+  handleUserRegister,
+  handleUserEnter,
+  handleUserOut,
+} from "./AppConsts";
 import "./App.css";
 import TasksSubmit from "./TasksSubmit";
 import TasksView from "./TasksView";
@@ -11,67 +16,15 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState("");
 
-  const handleUserRegister = (user) => {
-    auth
-      .createUserWithEmailAndPassword(user.email, user.password)
-      .then(() => (document.location.href = "http://localhost:3000/tasks"))
-      .catch((err) => {
-        alert(err.message);
-      });
-  };
-
-  const handleUserEnter = (user) => {
-    auth
-      .signInWithEmailAndPassword(user.email, user.password)
-      .then(() => (document.location.href = "http://localhost:3000/tasks"))
-      .catch((err) => {
-        alert(err.message);
-      });
-  };
-
-  const handleUserOut = () => {
-    auth
-      .signOut()
-      .then(() => (document.location.href = "http://localhost:3000"))
-      .catch((err) => {
-        alert(err.message);
-      });
-  };
-
   const handleUserUpdate = () => {
-    setUser(auth.X);
-  };
-
-  const handleTasksUpdate = () => {
-    database.ref("/users/" + user + "/tasks").on("value", (tasks) => {
-      if (tasks.val()) {
-        setTasks(Object.entries(tasks.val()));
-      } else {
-        setTasks([]);
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user.uid);
       }
     });
   };
 
-  const handleTasksAddClick = (task) => {
-    database
-      .ref("/users/" + user + "/tasks")
-      .push()
-      .set(task)
-      .then(() => handleTasksUpdate());
-  };
-
-  const handleTaskDeleteClick = (id) => {
-    database
-      .ref("/users/" + user + "/tasks")
-      .child(id)
-      .remove()
-      .then(() => handleTasksUpdate());
-  };
-
-  useEffect(() => {
-    handleUserUpdate();
-    handleTasksUpdate();
-  }, [auth.X, user]);
+  useEffect(() => handleUserUpdate(), []);
 
   return (
     <BrowserRouter>
@@ -85,12 +38,14 @@ function App() {
         <Route exact path="/tasks">
           <TasksView
             tasks={tasks}
-            handleTasksClick={handleTaskDeleteClick}
+            user={user}
+            database={database}
             handleUserOut={handleUserOut}
+            setTasks={setTasks}
           />
         </Route>
         <Route exact path="/submit">
-          <TasksSubmit handleTasksClick={handleTasksAddClick} />
+          <TasksSubmit database={database} user={user} />
         </Route>
       </Switch>
     </BrowserRouter>

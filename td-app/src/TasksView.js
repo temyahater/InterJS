@@ -6,13 +6,19 @@ import Nav from "./components/Nav";
 import TaskAdd from "./components/TaskAdd";
 import { TasksViewProps } from "./interfaces";
 
-function TasksView(props: TasksViewProps) {
+function TasksView({
+  tasks,
+  user,
+  database,
+  handleUserOut,
+  setTasks,
+}: TasksViewProps) {
   return (
     <div className="App">
       <Nav date={new Date()} />
       <TaskAdd />
-      <List updateTasks={props.handleTasksClick} tasks={props.tasks} />
-      <AppExit handleUserOut={props.handleUserOut} />
+      <List tasks={tasks} user={user} database={database} setTasks={setTasks} />
+      <AppExit handleUserOut={handleUserOut} />
     </div>
   );
 }

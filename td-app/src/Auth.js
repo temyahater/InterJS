@@ -4,13 +4,13 @@ import AppEnter from "./components/AppEnter";
 import Nav from "./components/Nav";
 import { AuthProps } from "./interfaces";
 
-function Auth(props: AuthProps) {
+function Auth({ handleUserRegister, handleUserEnter }: AuthProps) {
   return (
     <div className="App-auth">
       <Nav date={new Date()} />
       <AppEnter
-        handleUserRegister={props.handleUserRegister}
-        handleUserEnter={props.handleUserEnter}
+        handleUserRegister={handleUserRegister}
+        handleUserEnter={handleUserEnter}
       />
     </div>
   );
