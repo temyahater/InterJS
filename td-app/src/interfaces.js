@@ -3,13 +3,19 @@ export interface TasksSubmitProps {
   database: Object;
 }
 
+export interface TaskAddProps {
+  history: Object;
+}
+
 export interface AppEnterProps {
   handleUserRegister: Function;
   handleUserEnter: Function;
+  history: Object;
 }
 
 export interface AppExitProps {
-  handleExitClick: Function;
+  handleUserOut: Function;
+  history: Object;
 }
 
 export interface AuthProps {

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import { SubmitTaskProps } from "../interfaces";
+import { handleLocationChange, tasksURL } from "../AppConsts";
 
-const SubmitTask = ({ user, database }: SubmitTaskProps) => {
+const SubmitTask = ({ user, database, history }: SubmitTaskProps) => {
   const [inputValue, setInputValue] = useState("");
 
-  const handleInputValue = () => {
-    setInputValue(document.getElementById("task").value);
+  const handleInputValue = (event) => {
+    setInputValue(event.target.value);
   };
 
   const handleTasksAddClick = (task) => {
@@ -16,7 +18,6 @@ const SubmitTask = ({ user, database }: SubmitTaskProps) => {
   };
 
   const handleClickSubmit = () => {
-    handleInputValue();
     const taskText = inputValue.trim();
     if (taskText) {
       const date = new Date();
@@ -39,10 +40,10 @@ const SubmitTask = ({ user, database }: SubmitTaskProps) => {
   const handleViewTasks = () => {
     if (inputValue) {
       if (window.confirm("Are you shure? Input is not empty.")) {
-        document.location.href = "http://localhost:3000/tasks";
+        handleLocationChange(history, tasksURL);
       }
     } else {
-      document.location.href = "http://localhost:3000/tasks";
+      handleLocationChange(history, tasksURL);
     }
   };
 
@@ -50,7 +51,6 @@ const SubmitTask = ({ user, database }: SubmitTaskProps) => {
     <div className="submit-task">
       <div className="submit-input">
         <input
-          id="task"
           maxLength="45"
           onKeyPress={handlePressSubmit}
           value={inputValue}
@@ -65,4 +65,4 @@ const SubmitTask = ({ user, database }: SubmitTaskProps) => {
   );
 };
 
-export default SubmitTask;
+export default withRouter(SubmitTask);

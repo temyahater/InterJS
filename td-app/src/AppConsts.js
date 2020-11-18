@@ -1,30 +1,35 @@
 import { auth } from "./FireBaseConfig";
 
-const tasksURL = "http://localhost:3000/tasks";
-const baseURL = "http://localhost:3000";
+export const tasksURL = "/tasks";
+export const submitURL = "/submit";
+export const authURL = "/";
 
-export const handleUserRegister = (user) => {
+export const handleLocationChange = (history, url) => {
+  history.push(url);
+};
+
+export const handleUserRegister = (history, user) => {
   auth
     .createUserWithEmailAndPassword(user.email, user.password)
-    .then(() => (document.location.href = tasksURL))
+    .then(() => history.push(tasksURL))
     .catch((err) => {
       alert(err.message);
     });
 };
 
-export const handleUserEnter = (user) => {
+export const handleUserEnter = (history, user) => {
   auth
     .signInWithEmailAndPassword(user.email, user.password)
-    .then(() => (document.location.href = tasksURL))
+    .then(() => history.push(tasksURL))
     .catch((err) => {
       alert(err.message);
     });
 };
 
-export const handleUserOut = () => {
+export const handleUserOut = (history) => {
   auth
     .signOut()
-    .then(() => (document.location.href = baseURL))
+    .then(() => history.push(authURL))
     .catch((err) => {
       alert(err.message);
     });

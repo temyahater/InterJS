@@ -1,8 +1,11 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { handleLocationChange, submitURL } from "../AppConsts";
+import { TaskAddProps } from "../interfaces";
 
-const TaskAdd = () => {
+const TaskAdd = ({ history }: TaskAddProps) => {
   const handleAddTaskClick = () => {
-    document.location.href = "http://localhost:3000/submit";
+    handleLocationChange(history, submitURL);
   };
 
   return (
@@ -12,4 +15,4 @@ const TaskAdd = () => {
   );
 };
 
-export default TaskAdd;
+export default withRouter(TaskAdd);

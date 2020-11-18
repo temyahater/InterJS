@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import ListElement from "./ListElement";
 import { ListProps } from "../interfaces";
 
@@ -11,8 +11,7 @@ const List = ({ tasks, user, database, setTasks }: ListProps) => {
       .then(() => handleTasksUpdate());
   };
 
-  const handleTasksUpdate = () => {
-    console.log(user);
+  const handleTasksUpdate = useCallback(() => {
     database.ref("/users/" + user + "/tasks").on("value", (tasks) => {
       if (tasks.val()) {
         setTasks(Object.entries(tasks.val()));
@@ -20,9 +19,9 @@ const List = ({ tasks, user, database, setTasks }: ListProps) => {
         setTasks([]);
       }
     });
-  };
+  }, [database, setTasks, user]);
 
-  useEffect(() => handleTasksUpdate(), [user]);
+  useEffect(() => handleTasksUpdate(), [handleTasksUpdate]);
 
   return (
     <div className="list">

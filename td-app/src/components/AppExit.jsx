@@ -1,10 +1,11 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { AppExitProps } from "../interfaces";
 
-const AppExit = (props: AppExitProps) => {
+const AppExit = ({ handleUserOut, history }: AppExitProps) => {
   const handleExitClick = () => {
     if (window.confirm("Are you shure?")) {
-      props.handleUserOut();
+      handleUserOut(history);
     }
   };
 
@@ -15,4 +16,4 @@ const AppExit = (props: AppExitProps) => {
   );
 };
 
-export default AppExit;
+export default withRouter(AppExit);

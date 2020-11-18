@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import { AppEnterProps } from "../interfaces";
 
-const AppEnter = ({ handleUserRegister, handleUserEnter }: AppEnterProps) => {
+const AppEnter = ({
+  handleUserRegister,
+  handleUserEnter,
+  history,
+}: AppEnterProps) => {
   const [checkRegister, setRegister] = useState(false);
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
 
@@ -9,21 +14,28 @@ const AppEnter = ({ handleUserRegister, handleUserEnter }: AppEnterProps) => {
     setRegister(!checkRegister);
   };
 
-  const handleUserInfo = () => {
-    setUserInfo({
-      email: document.getElementById("email").value,
-      password: document.getElementById("password").value,
-    });
+  const handleUserInfo = (event) => {
+    if (event.target.name === "email") {
+      setUserInfo({
+        email: event.target.value,
+        password: userInfo.password,
+      });
+    } else {
+      setUserInfo({
+        email: userInfo.email,
+        password: event.target.value,
+      });
+    }
   };
 
   const handleEnterClick = () => {
     if (checkRegister) {
-      handleUserRegister({
+      handleUserRegister(history, {
         email: userInfo.email,
         password: userInfo.password,
       });
     } else {
-      handleUserEnter({
+      handleUserEnter(history, {
         email: userInfo.email,
         password: userInfo.password,
       });
@@ -37,7 +49,7 @@ const AppEnter = ({ handleUserRegister, handleUserEnter }: AppEnterProps) => {
         <div className="enter-email">
           <span>Email</span>
           <input
-            id="email"
+            name="email"
             type="text"
             value={userInfo.email}
             onChange={handleUserInfo}
@@ -46,7 +58,7 @@ const AppEnter = ({ handleUserRegister, handleUserEnter }: AppEnterProps) => {
         <div className="enter-password">
           <span>Password</span>
           <input
-            id="password"
+            name="password"
             type="password"
             value={userInfo.password}
             onChange={handleUserInfo}
@@ -68,4 +80,4 @@ const AppEnter = ({ handleUserRegister, handleUserEnter }: AppEnterProps) => {
   );
 };
 
-export default AppEnter;
+export default withRouter(AppEnter);
