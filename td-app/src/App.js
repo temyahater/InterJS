@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import { database } from "../../services/Firebase/Firebase";
-import { auth } from "../../services/Firebase/Firebase";
+import { database } from "./services/Firebase/Firebase";
+import { auth } from "./services/Firebase/Firebase";
 import {
   handleUserRegister,
   handleUserEnter,
   handleUserOut,
-} from "../../services/ConstsHandles/AppConsts";
+} from "./services/ConstsHandles/AppConsts";
 import "./App.css";
-import TasksSubmit from "../TaskSubmit/TasksSubmit";
-import TasksView from "../TaskView/TasksView";
-import Auth from "../Auth/Auth";
+import TasksSubmit from "./components/TaskSubmit/TasksSubmit";
+import TasksView from "./components/TaskView/TasksView";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   const [tasks, setTasks] = useState([]);
