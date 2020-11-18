@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from "react";
-import ListElement from "./ListElement";
-import { ListProps } from "../interfaces";
+import ListElement from "../ListElement/ListElement";
+import { ListProps } from "../../models/interfaces";
+import "./List.css";
 
 const List = ({ tasks, user, database, setTasks }: ListProps) => {
   const handleTaskDeleteClick = (id) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { AppExitProps } from "../interfaces";
+import { AppExitProps } from "../../models/interfaces";
+import "./AppExit.css";
 
 const AppExit = ({ handleUserOut, history }: AppExitProps) => {
   const handleExitClick = () => {

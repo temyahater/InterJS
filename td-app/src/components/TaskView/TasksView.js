@@ -1,10 +1,9 @@
 import React from "react";
-import "./App.css";
-import AppExit from "./components/AppExit";
-import List from "./components/List";
-import Nav from "./components/Nav";
-import TaskAdd from "./components/TaskAdd";
-import { TasksViewProps } from "./interfaces";
+import List from "../List/List";
+import Nav from "../Nav/Nav";
+import TaskAdd from "../TaskAdd/TaskAdd";
+import { TasksViewProps } from "../../models/interfaces";
+import AppExit from "../AppExit/AppExit";
 
 function TasksView({
   tasks,

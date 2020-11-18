@@ -1,0 +1,12 @@
+.app-exit {
+  font-size: 2vw;
+  width: 100%;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+  background: rgb(160, 160, 160);
+}
+
+.app-exit:hover {
+  background: rgb(201, 201, 201);
+  cursor: pointer;
+}

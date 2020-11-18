@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { AppEnterProps } from "../interfaces";
+import { AppEnterProps } from "../../models/interfaces";
+import "./AppEnter.css";
 
 const AppEnter = ({
   handleUserRegister,

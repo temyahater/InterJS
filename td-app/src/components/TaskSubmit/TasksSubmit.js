@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
-import Nav from "./components/Nav";
-import SubmitTask from "./components/SubmitTask";
-import { TasksSubmitProps } from "./interfaces";
+import Nav from "../Nav/Nav";
+import SubmitTask from "../SubmitTask/SubmitTask";
+import { TasksSubmitProps } from "../../models/interfaces";
+import "./TasksSubmit.css";
 
 function TasksSubmit({ user, database }: TasksSubmitProps) {
   return (

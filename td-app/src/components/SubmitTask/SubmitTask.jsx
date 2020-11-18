@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { SubmitTaskProps } from "../interfaces";
-import { handleLocationChange, tasksURL } from "../AppConsts";
+import { SubmitTaskProps } from "../../models/interfaces";
+import {
+  handleLocationChange,
+  tasksURL,
+} from "../../services/ConstsHandles/AppConsts";
+import "./SubmitTask.css";
 
 const SubmitTask = ({ user, database, history }: SubmitTaskProps) => {
   const [inputValue, setInputValue] = useState("");

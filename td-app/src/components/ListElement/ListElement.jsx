@@ -1,5 +1,6 @@
 import React from "react";
-import { ListElementProps } from "../interfaces";
+import { ListElementProps } from "../../models/interfaces";
+import "./ListElement.css";
 
 const ListElement = ({
   databaseTaskId,

@@ -1,0 +1,11 @@
+.task-add {
+  font-size: 2vw;
+  width: 100%;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.task-add:hover {
+  background: rgb(224, 224, 224);
+  cursor: pointer;
+}

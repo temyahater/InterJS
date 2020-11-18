@@ -1,5 +1,6 @@
 import React from "react";
-import { NavProps } from "../interfaces";
+import { NavProps } from "../../models/interfaces";
+import "./Nav.css";
 
 const Nav = ({ date }: NavProps) => {
   return (

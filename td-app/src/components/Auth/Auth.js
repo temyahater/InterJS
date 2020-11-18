@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
-import AppEnter from "./components/AppEnter";
-import Nav from "./components/Nav";
-import { AuthProps } from "./interfaces";
+import AppEnter from "../AppEnter/AppEnter";
+import Nav from "../Nav/Nav";
+import { AuthProps } from "../../models/interfaces";
+import "./Auth.css";
 
 function Auth({ handleUserRegister, handleUserEnter }: AuthProps) {
   return (

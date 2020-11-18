@@ -1,4 +1,4 @@
-import { auth } from "./FireBaseConfig";
+import { auth } from "../Firebase/Firebase";
 
 export const tasksURL = "/tasks";
 export const submitURL = "/submit";
