@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { SubmitTaskProps } from "../../models/interfaces";
 import {
   handleLocationChange,
@@ -7,14 +7,18 @@ import {
 } from "../../services/ConstsHandles/AppConsts";
 import "./SubmitTask.css";
 
-const SubmitTask = ({ user, database, history }: SubmitTaskProps) => {
-  const [inputValue, setInputValue] = useState("");
+const SubmitTask = ({
+  user,
+  database,
+  history,
+}: SubmitTaskProps & RouteComponentProps) => {
+  const [inputValue, setInputValue] = React.useState("");
 
-  const handleInputValue = (event) => {
+  const handleInputValue = (event: { target: HTMLInputElement }) => {
     setInputValue(event.target.value);
   };
 
-  const handleTasksAddClick = (task) => {
+  const handleTasksAddClick = (task: Object) => {
     database
       .ref("/users/" + user + "/tasks")
       .push()
@@ -35,8 +39,8 @@ const SubmitTask = ({ user, database, history }: SubmitTaskProps) => {
     setInputValue("");
   };
 
-  const handlePressSubmit = (key) => {
-    if (key.code === "Enter") {
+  const handlePressSubmit = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter") {
       handleClickSubmit();
     }
   };
@@ -55,7 +59,7 @@ const SubmitTask = ({ user, database, history }: SubmitTaskProps) => {
     <div className="submit-task">
       <div className="submit-input">
         <input
-          maxLength="45"
+          maxLength={45}
           onKeyPress={handlePressSubmit}
           value={inputValue}
           onChange={handleInputValue}

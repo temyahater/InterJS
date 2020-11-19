@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import AppEnter from "../AppEnter/AppEnter";
 import Nav from "../Nav/Nav";
 import { AuthProps } from "../../models/interfaces";

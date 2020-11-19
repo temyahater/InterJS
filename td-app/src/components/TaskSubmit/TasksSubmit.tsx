@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Nav from "../Nav/Nav";
 import SubmitTask from "../SubmitTask/SubmitTask";
 import { TasksSubmitProps } from "../../models/interfaces";

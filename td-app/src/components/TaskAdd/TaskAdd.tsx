@@ -1,13 +1,12 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import {
   handleLocationChange,
   submitURL,
 } from "../../services/ConstsHandles/AppConsts";
-import { TaskAddProps } from "../../models/interfaces";
 import "./TaskAdd.css";
 
-const TaskAdd = ({ history }: TaskAddProps) => {
+const TaskAdd = ({ history }: RouteComponentProps) => {
   const handleAddTaskClick = () => {
     handleLocationChange(history, submitURL);
   };

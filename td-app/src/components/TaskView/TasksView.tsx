@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import List from "../List/List";
 import Nav from "../Nav/Nav";
 import TaskAdd from "../TaskAdd/TaskAdd";

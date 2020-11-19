@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { database } from "./services/Firebase/Firebase";
 import { auth } from "./services/Firebase/Firebase";
@@ -13,8 +13,8 @@ import TasksView from "./components/TaskView/TasksView";
 import Auth from "./components/Auth/Auth";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [user, setUser] = useState("");
+  const [tasks, setTasks] = React.useState([]);
+  const [user, setUser] = React.useState("");
 
   const handleUserUpdate = () => {
     auth.onAuthStateChanged((user) => {
@@ -24,7 +24,7 @@ function App() {
     });
   };
 
-  useEffect(() => handleUserUpdate(), []);
+  React.useEffect(() => handleUserUpdate(), []);
 
   return (
     <BrowserRouter>

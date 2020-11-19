@@ -1,21 +1,17 @@
-export interface TasksSubmitProps {
-  user: String;
-  database: Object;
-}
+import { database } from "../services/Firebase/Firebase"
 
-export interface TaskAddProps {
-  history: Object;
+export interface TasksSubmitProps {
+  user?: string;
+  database: typeof database;
 }
 
 export interface AppEnterProps {
   handleUserRegister: Function;
   handleUserEnter: Function;
-  history: Object;
 }
 
 export interface AppExitProps {
   handleUserOut: Function;
-  history: Object;
 }
 
 export interface AuthProps {
@@ -24,16 +20,16 @@ export interface AuthProps {
 }
 
 export interface TasksViewProps {
-  user: String;
-  database: Object;
-  tasks: Array;
+  user?: string;
+  database: typeof database;
+  tasks: Array<Array<Object>>;
   handleUserOut: Function;
   setTasks: Function;
 }
 
 export interface SubmitTaskProps {
-  user: String;
-  database: Object;
+  user?: string;
+  database: typeof database;
 }
 
 export interface NavProps {
@@ -41,15 +37,26 @@ export interface NavProps {
 }
 
 export interface ListProps {
-  tasks: Array;
-  user: String;
-  database: Object;
+  tasks: Array<Array<Object>>;
+  user?: string;
+  database: typeof database;
   setTasks: Function;
 }
 
+export interface User {
+  email?: string;
+  password?: string;
+}
+
+interface Task {
+  id?: string;
+  date?: string;
+  task?: string;
+}
+
 export interface ListElementProps {
-  databaseTaskId: String;
-  task: Object;
-  database: Object;
+  key?: string;
+  databaseTaskId?: string;
+  task: Task;
   handleTaskDeleteClick: Function;
 }

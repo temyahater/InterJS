@@ -1,10 +1,10 @@
-import React, { useEffect, useCallback } from "react";
+import * as React from "react";
 import ListElement from "../ListElement/ListElement";
 import { ListProps } from "../../models/interfaces";
 import "./List.css";
 
 const List = ({ tasks, user, database, setTasks }: ListProps) => {
-  const handleTaskDeleteClick = (id) => {
+  const handleTaskDeleteClick = (id: string) => {
     database
       .ref("/users/" + user + "/tasks")
       .child(id)
@@ -12,7 +12,7 @@ const List = ({ tasks, user, database, setTasks }: ListProps) => {
       .then(() => handleTasksUpdate());
   };
 
-  const handleTasksUpdate = useCallback(() => {
+  const handleTasksUpdate = React.useCallback(() => {
     database.ref("/users/" + user + "/tasks").on("value", (tasks) => {
       if (tasks.val()) {
         setTasks(Object.entries(tasks.val()));
@@ -22,16 +22,15 @@ const List = ({ tasks, user, database, setTasks }: ListProps) => {
     });
   }, [database, setTasks, user]);
 
-  useEffect(() => handleTasksUpdate(), [handleTasksUpdate]);
+  React.useEffect(() => handleTasksUpdate(), [handleTasksUpdate]);
 
   return (
     <div className="list">
-      {tasks.map((task) => (
+      {tasks.map((task: Array<Object>) => (
         <ListElement
-          key={task[0]}
-          databaseTaskId={task[0]}
+          key={String(task[0])}
+          databaseTaskId={String(task[0])}
           task={task[1]}
-          database={database}
           handleTaskDeleteClick={handleTaskDeleteClick}
         />
       ))}

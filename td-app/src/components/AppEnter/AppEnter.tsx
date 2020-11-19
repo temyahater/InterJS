@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { AppEnterProps } from "../../models/interfaces";
 import "./AppEnter.css";
 
@@ -7,15 +7,15 @@ const AppEnter = ({
   handleUserRegister,
   handleUserEnter,
   history,
-}: AppEnterProps) => {
-  const [checkRegister, setRegister] = useState(false);
-  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
+}: AppEnterProps & RouteComponentProps) => {
+  const [checkRegister, setRegister] = React.useState(false);
+  const [userInfo, setUserInfo] = React.useState({ email: "", password: "" });
 
   const handleCheckRegisterClick = () => {
     setRegister(!checkRegister);
   };
 
-  const handleUserInfo = (event) => {
+  const handleUserInfo = (event: { target: HTMLInputElement }) => {
     if (event.target.name === "email") {
       setUserInfo({
         email: event.target.value,
