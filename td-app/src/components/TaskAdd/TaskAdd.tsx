@@ -13,7 +13,7 @@ const TaskAdd = ({ history }: RouteComponentProps) => {
 
   return (
     <div className="task-add">
-      <div onClick={handleAddTaskClick}>+ Task</div>
+      <div role="button" tabIndex={0} onKeyDown={handleAddTaskClick} onClick={handleAddTaskClick}>+ Task</div>
     </div>
   );
 };

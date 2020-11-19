@@ -1,6 +1,6 @@
+import { History } from "history";
 import { auth } from "../Firebase/Firebase";
-import { History } from 'history';
-import { User } from '../../models/interfaces'
+import { User } from "../../models/interfaces";
 
 export const tasksURL = "/tasks";
 export const submitURL = "/submit";
@@ -12,7 +12,7 @@ export const handleLocationChange = (history: History, url: string) => {
 
 export const handleUserRegister = (history: History, user: User) => {
   auth
-    .createUserWithEmailAndPassword(user.email || '', user.password || '')
+    .createUserWithEmailAndPassword(user.email || "", user.password || "")
     .then(() => history.push(tasksURL))
     .catch((err) => {
       alert(err.message);
@@ -21,7 +21,7 @@ export const handleUserRegister = (history: History, user: User) => {
 
 export const handleUserEnter = (history: History, user: User) => {
   auth
-    .signInWithEmailAndPassword(user.email || '', user.password || '')
+    .signInWithEmailAndPassword(user.email || "", user.password || "")
     .then(() => history.push(tasksURL))
     .catch((err) => {
       alert(err.message);

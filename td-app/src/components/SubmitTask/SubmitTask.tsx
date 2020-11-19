@@ -20,7 +20,7 @@ const SubmitTask = ({
 
   const handleTasksAddClick = (task: Object) => {
     database
-      .ref("/users/" + user + "/tasks")
+      .ref(`/users/${user}/tasks`)
       .push()
       .set(task);
   };
@@ -66,8 +66,8 @@ const SubmitTask = ({
         />
       </div>
       <div className="submit-buttons">
-        <button onClick={handleClickSubmit}>Add</button>
-        <button onClick={handleViewTasks}>View tasks</button>
+        <button type="button" onClick={handleClickSubmit}>Add</button>
+        <button type="button" onClick={handleViewTasks}>View tasks</button>
       </div>
     </div>
   );

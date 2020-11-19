@@ -6,21 +6,22 @@ const ListElement = ({
   databaseTaskId,
   task,
   handleTaskDeleteClick,
-}: ListElementProps) => {
-  return (
-    <div className="list-element">
-      <div className="list-element-date">{task.date}</div>
-      <div className="list-element-task">
-        <div>{task.task}</div>
-        <div
-          className="list-element-remove"
-          onClick={() => handleTaskDeleteClick(databaseTaskId)}
-        >
-          X
-        </div>
+}: ListElementProps) => (
+  <div className="list-element">
+    <div className="list-element-date">{task.date}</div>
+    <div className="list-element-task">
+      <div>{task.task}</div>
+      <div
+        role="button"
+        tabIndex={0}
+        className="list-element-remove"
+        onClick={() => handleTaskDeleteClick(databaseTaskId)}
+        onKeyDown={() => handleTaskDeleteClick(databaseTaskId)}
+      >
+        X
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default ListElement;

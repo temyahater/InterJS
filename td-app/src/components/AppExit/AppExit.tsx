@@ -15,7 +15,7 @@ const AppExit = ({
 
   return (
     <div className="app-exit">
-      <div onClick={handleExitClick}>Exit</div>
+      <div role="button" onClick={handleExitClick} onKeyDown={handleExitClick} tabIndex={0}>Exit</div>
     </div>
   );
 };

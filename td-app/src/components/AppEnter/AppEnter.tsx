@@ -66,7 +66,7 @@ const AppEnter = ({
           />
         </div>
         <div className="enter-button">
-          <button onClick={handleEnterClick}>Enter</button>
+          <button type="button" onClick={handleEnterClick}>Enter</button>
         </div>
       </div>
       <div className="register">
@@ -75,7 +75,7 @@ const AppEnter = ({
           checked={checkRegister}
           onChange={handleCheckRegisterClick}
         />
-        <button onClick={handleCheckRegisterClick}>Register</button>
+        <button type="button" onClick={handleCheckRegisterClick}>Register</button>
       </div>
     </div>
   );

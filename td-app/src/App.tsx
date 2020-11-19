@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import { database } from "./services/Firebase/Firebase";
-import { auth } from "./services/Firebase/Firebase";
+import { database, auth } from "./services/Firebase/Firebase";
+
 import {
   handleUserRegister,
   handleUserEnter,
@@ -14,12 +14,13 @@ import Auth from "./components/Auth/Auth";
 
 function App() {
   const [tasks, setTasks] = React.useState([]);
+  // const [user, setUser] = React.useState("");
   const [user, setUser] = React.useState("");
 
   const handleUserUpdate = () => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user.uid);
+    auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        setUser(currentUser.uid);
       }
     });
   };

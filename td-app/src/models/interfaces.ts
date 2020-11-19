@@ -1,4 +1,4 @@
-import { database } from "../services/Firebase/Firebase"
+import { database } from "../services/Firebase/Firebase";
 
 export interface TasksSubmitProps {
   user?: string;
