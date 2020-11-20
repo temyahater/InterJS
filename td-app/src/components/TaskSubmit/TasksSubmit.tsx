@@ -4,11 +4,11 @@ import SubmitTask from "../SubmitTask/SubmitTask";
 import { TasksSubmitProps } from "../../models/interfaces";
 import "./TasksSubmit.css";
 
-function TasksSubmit({ user, database }: TasksSubmitProps) {
+function TasksSubmit({ database }: TasksSubmitProps) {
   return (
     <div className="App-submit">
       <Nav date={new Date()} />
-      <SubmitTask database={database} user={user} />
+      <SubmitTask database={database} />
     </div>
   );
 }

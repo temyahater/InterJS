@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import { database, auth } from "./services/Firebase/Firebase";
-
 import {
   handleUserRegister,
   handleUserEnter,
@@ -11,21 +11,21 @@ import "./App.css";
 import TasksSubmit from "./components/TaskSubmit/TasksSubmit";
 import TasksView from "./components/TaskView/TasksView";
 import Auth from "./components/Auth/Auth";
+import { StateApp } from "./models/interfaces";
 
-function App() {
-  const [tasks, setTasks] = React.useState([]);
-  // const [user, setUser] = React.useState("");
-  const [user, setUser] = React.useState("");
-
-  const handleUserUpdate = () => {
+function App(props: any) {
+  const handleUserUpdate = React.useCallback(() => {
     auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        setUser(currentUser.uid);
+        props.dispatch({
+          type: "USER_UPDATE",
+          data: { user: currentUser.uid },
+        });
       }
     });
-  };
+  }, [props]);
 
-  React.useEffect(() => handleUserUpdate(), []);
+  React.useEffect(() => handleUserUpdate(), [handleUserUpdate]);
 
   return (
     <BrowserRouter>
@@ -37,20 +37,18 @@ function App() {
           />
         </Route>
         <Route exact path="/tasks">
-          <TasksView
-            tasks={tasks}
-            user={user}
-            database={database}
-            handleUserOut={handleUserOut}
-            setTasks={setTasks}
-          />
+          <TasksView database={database} handleUserOut={handleUserOut} />
         </Route>
         <Route exact path="/submit">
-          <TasksSubmit database={database} user={user} />
+          <TasksSubmit database={database} />
         </Route>
       </Switch>
     </BrowserRouter>
   );
 }
 
-export default App;
+function mapStateToProps(state: StateApp) {
+  return { dispatch: state.dispatch };
+}
+
+export default connect(mapStateToProps)(App);

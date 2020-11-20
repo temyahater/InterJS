@@ -1,6 +1,7 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { SubmitTaskProps } from "../../models/interfaces";
+import { StateSubmit, SubmitTaskProps } from "../../models/interfaces";
 import {
   handleLocationChange,
   tasksURL,
@@ -8,9 +9,9 @@ import {
 import "./SubmitTask.css";
 
 const SubmitTask = ({
-  user,
   database,
   history,
+  user,
 }: SubmitTaskProps & RouteComponentProps) => {
   const [inputValue, setInputValue] = React.useState("");
 
@@ -19,10 +20,7 @@ const SubmitTask = ({
   };
 
   const handleTasksAddClick = (task: Object) => {
-    database
-      .ref(`/users/${user}/tasks`)
-      .push()
-      .set(task);
+    database.ref(`/users/${user}/tasks`).push().set(task);
   };
 
   const handleClickSubmit = () => {
@@ -66,11 +64,19 @@ const SubmitTask = ({
         />
       </div>
       <div className="submit-buttons">
-        <button type="button" onClick={handleClickSubmit}>Add</button>
-        <button type="button" onClick={handleViewTasks}>View tasks</button>
+        <button type="button" onClick={handleClickSubmit}>
+          Add
+        </button>
+        <button type="button" onClick={handleViewTasks}>
+          View tasks
+        </button>
       </div>
     </div>
   );
 };
 
-export default withRouter(SubmitTask);
+function mapStateToProps(state: StateSubmit) {
+  return { user: state.user };
+}
+
+export default connect(mapStateToProps)(withRouter(SubmitTask));

@@ -1,7 +1,39 @@
 import { database } from "../services/Firebase/Firebase";
 
-export interface TasksSubmitProps {
+export interface StateApp {
+  dispatch: Function;
+}
+
+export interface StateList {
+  tasks: Array<Array<object>>;
+  user: string;
+  dispatch: Function;
+}
+
+export interface StateSubmit {
+  user: string;
+}
+
+export interface StateObject {
   user?: string;
+  tasks: Array<Array<Object>>;
+  database: typeof database;
+}
+
+export interface StoreObject {
+  type: string;
+  data: object;
+}
+
+export interface DataUser {
+  user?: string;
+}
+
+export interface DataTask {
+  tasks: Array<Array<Object>>;
+}
+
+export interface TasksSubmitProps {
   database: typeof database;
 }
 
@@ -20,16 +52,13 @@ export interface AuthProps {
 }
 
 export interface TasksViewProps {
-  user?: string;
   database: typeof database;
-  tasks: Array<Array<Object>>;
   handleUserOut: Function;
-  setTasks: Function;
 }
 
 export interface SubmitTaskProps {
-  user?: string;
   database: typeof database;
+  user: string;
 }
 
 export interface NavProps {
@@ -38,9 +67,9 @@ export interface NavProps {
 
 export interface ListProps {
   tasks: Array<Array<Object>>;
-  user?: string;
+  user: string;
+  dispatch: Function;
   database: typeof database;
-  setTasks: Function;
 }
 
 export interface User {
