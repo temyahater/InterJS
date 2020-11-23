@@ -1,6 +1,8 @@
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { AppEnterProps } from "../../models/interfaces";
+import { handleLocationChange, tasksURL } from "../../services/ConstsHandles/AppConsts";
+import { auth } from "../../services/Firebase/Firebase";
 import "./AppEnter.css";
 
 const AppEnter = ({
@@ -8,6 +10,14 @@ const AppEnter = ({
   handleUserEnter,
   history,
 }: AppEnterProps & RouteComponentProps) => {
+  React.useEffect(() => {
+    auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        handleLocationChange(history, tasksURL);
+      }
+    });
+  });
+
   const [checkRegister, setRegister] = React.useState(false);
   const [userInfo, setUserInfo] = React.useState({ email: "", password: "" });
 

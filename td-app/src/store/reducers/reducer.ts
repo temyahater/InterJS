@@ -18,6 +18,9 @@ export default function reducer(state: StateObject | undefined, action: StoreObj
       return { ...state, user: action.user };
     case "TASKS_UPDATE":
       return { ...state, tasks: action.tasks };
+    case "TEST":
+      console.log("test");
+      return state;
     default:
       return state;
   }
