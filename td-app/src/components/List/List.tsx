@@ -1,12 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { ListProps, StateList } from "../../models/interfaces";
 import tasksAction from "../../store/actions/tasks";
 import ListElement from "../ListElement/ListElement";
 import "./List.css";
 
 const List = ({
-  tasks, user, database, dispatch,
+  tasks, user, database, loadTasks,
 }: ListProps) => {
   const handleTaskDeleteClick = (id: string) => {
     database
@@ -19,10 +20,10 @@ const List = ({
   const handleTasksUpdate = React.useCallback(() => {
     database.ref(`/users/${user}/tasks`).on("value", (data) => {
       if (data.val()) {
-        dispatch(tasksAction(Object.entries(data.val())));
+        loadTasks(Object.entries(data.val()));
       }
     });
-  }, [database, user, dispatch]);
+  }, [database, user, loadTasks]);
 
   React.useEffect(() => handleTasksUpdate(), [handleTasksUpdate]);
 
@@ -44,4 +45,8 @@ function mapStateToProps(state: StateList) {
   return { ...state };
 }
 
-export default connect(mapStateToProps)(List);
+function mapDispatchToProps(dispatch: any) {
+  return { loadTasks: bindActionCreators(tasksAction, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

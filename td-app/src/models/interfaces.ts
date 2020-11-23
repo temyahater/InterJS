@@ -1,7 +1,7 @@
 import { database } from "../services/Firebase/Firebase";
 
 export interface StateApp {
-  dispatch: Function;
+  loadUser: Function;
 }
 
 export interface StateList {
@@ -42,6 +42,8 @@ export interface AppEnterProps {
 
 export interface AppExitProps {
   handleUserOut: Function;
+  clearTasks: Function;
+  clearUser: Function;
 }
 
 export interface AuthProps {
@@ -68,6 +70,7 @@ export interface ListProps {
   user: string;
   dispatch: Function;
   database: typeof database;
+  loadTasks: Function;
 }
 
 export interface User {
