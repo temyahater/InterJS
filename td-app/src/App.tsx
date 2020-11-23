@@ -12,15 +12,13 @@ import TasksSubmit from "./components/TaskSubmit/TasksSubmit";
 import TasksView from "./components/TaskView/TasksView";
 import Auth from "./components/Auth/Auth";
 import { StateApp } from "./models/interfaces";
+import userAction from "./store/actions/user";
 
 function App(props: any) {
   const handleUserUpdate = React.useCallback(() => {
     auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        props.dispatch({
-          type: "USER_UPDATE",
-          data: { user: currentUser.uid },
-        });
+        props.dispatch(userAction(currentUser.uid));
       }
     });
   }, [props]);

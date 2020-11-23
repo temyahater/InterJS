@@ -15,7 +15,7 @@ export interface StateSubmit {
 }
 
 export interface StateObject {
-  user?: string;
+  user: string;
   tasks: Array<Array<Object>>;
   database: typeof database;
 }
@@ -23,14 +23,12 @@ export interface StateObject {
 export interface StoreObject {
   type: string;
   data: object;
+  tasks: Array<Array<object>>;
+  user: string;
 }
 
 export interface DataUser {
-  user?: string;
-}
-
-export interface DataTask {
-  tasks: Array<Array<Object>>;
+  user: string;
 }
 
 export interface TasksSubmitProps {
@@ -73,8 +71,8 @@ export interface ListProps {
 }
 
 export interface User {
-  email?: string;
-  password?: string;
+  email: string;
+  password: string;
 }
 
 interface Task {
@@ -84,8 +82,8 @@ interface Task {
 }
 
 export interface ListElementProps {
-  key?: string;
-  databaseTaskId?: string;
+  key: string;
+  databaseTaskId: string;
   task: Task;
   handleTaskDeleteClick: Function;
 }

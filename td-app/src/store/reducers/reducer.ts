@@ -1,7 +1,5 @@
-import userAction from "../actions/user";
 import { StoreObject, StateObject } from "../../models/interfaces";
 import { database } from "../../services/Firebase/Firebase";
-import tasksAction from "../actions/tasks";
 
 const initialState = {
   user: "",
@@ -17,9 +15,9 @@ export default function reducer(state: StateObject | undefined, action: StoreObj
   }
   switch (action.type) {
     case "USER_UPDATE":
-      return userAction(state, action.data);
+      return { ...state, user: action.user };
     case "TASKS_UPDATE":
-      return tasksAction(state, action.data);
+      return { ...state, tasks: action.tasks };
     default:
       return state;
   }

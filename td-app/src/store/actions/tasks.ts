@@ -1,6 +1,3 @@
-import { DataTask, StateObject } from "../../models/interfaces";
-
-function tasksAction(state: StateObject, data: DataTask | any) {
-  return { ...state, tasks: data.tasks };
+export default function tasksAction(tasks: Array<Array<Object>>) {
+  return { type: "TASKS_UPDATE", tasks };
 }
-export default tasksAction;

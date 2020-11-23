@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { ListProps, StateList } from "../../models/interfaces";
+import tasksAction from "../../store/actions/tasks";
 import ListElement from "../ListElement/ListElement";
 import "./List.css";
 
@@ -18,10 +19,7 @@ const List = ({
   const handleTasksUpdate = React.useCallback(() => {
     database.ref(`/users/${user}/tasks`).on("value", (data) => {
       if (data.val()) {
-        dispatch({
-          type: "TASKS_UPDATE",
-          data: { tasks: Object.entries(data.val()) },
-        });
+        dispatch(tasksAction(Object.entries(data.val())));
       }
     });
   }, [database, user, dispatch]);

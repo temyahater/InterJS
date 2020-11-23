@@ -1,6 +1,3 @@
-import { DataUser, StateObject } from "../../models/interfaces";
-
-function userAction(state: StateObject, data: DataUser) {
-  return { ...state, user: data.user };
+export default function userAction(user: string) {
+  return { type: "USER_UPDATE", user };
 }
-export default userAction;
