@@ -1,6 +1,9 @@
 import { StateObject, StoreObject } from "../../models/interfaces";
 import { database } from "../../services/Firebase/Firebase";
 
+const typeUser = "USER_UPDATE";
+const typeTask = "TASKS_UPDATE";
+
 const initialState = {
   user: "",
   tasks: [],
@@ -14,9 +17,9 @@ export default function reducer(state: StateObject | undefined, action: StoreObj
     return initialState;
   }
   switch (action.type) {
-    case "USER_UPDATE":
+    case typeUser:
       return { ...state, user: action.user };
-    case "TASKS_UPDATE":
+    case typeTask:
       return { ...state, tasks: action.tasks };
     default:
       return state;

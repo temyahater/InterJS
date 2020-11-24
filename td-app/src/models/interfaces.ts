@@ -36,30 +36,27 @@ export interface TasksSubmitProps {
 }
 
 export interface AppEnterProps {
-  handleUserRegister: Function;
-  handleUserEnter: Function;
-  loadUser: Function;
+  enterUser: Function;
+  registerUser: Function;
+  redirectUser: Function;
 }
 
 export interface AppExitProps {
-  handleUserOut: Function;
-  clearTasks: Function;
-  clearUser: Function;
-}
-
-export interface AuthProps {
-  handleUserRegister: Function;
-  handleUserEnter: Function;
+  userExit: Function;
 }
 
 export interface TasksViewProps {
   database: typeof database;
-  handleUserOut: Function;
 }
 
 export interface SubmitTaskProps {
   database: typeof database;
   user: string;
+  redirectUser: Function;
+}
+
+export interface TaskAddProps {
+  redirectUser: Function;
 }
 
 export interface NavProps {

@@ -1,17 +1,17 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import { StateSubmit, SubmitTaskProps } from "../../models/interfaces";
-import {
-  handleLocationChange,
-  tasksURL,
-} from "../../services/ConstsHandles/AppConsts";
+import { tasksURL } from "../../services/Database/database-calls";
+import userRedirectRequsetAction from "../../store/actions/user-redirect-request";
 import "./SubmitTask.css";
 
 const SubmitTask = ({
   database,
   history,
   user,
+  redirectUser,
 }: SubmitTaskProps & RouteComponentProps) => {
   const [inputValue, setInputValue] = React.useState("");
 
@@ -46,10 +46,10 @@ const SubmitTask = ({
   const handleViewTasks = () => {
     if (inputValue) {
       if (window.confirm("Are you shure? Input is not empty.")) {
-        handleLocationChange(history, tasksURL);
+        redirectUser(history, tasksURL);
       }
     } else {
-      handleLocationChange(history, tasksURL);
+      redirectUser(history, tasksURL);
     }
   };
 
@@ -79,4 +79,13 @@ function mapStateToProps(state: StateSubmit) {
   return { user: state.user };
 }
 
-export default connect(mapStateToProps)(withRouter(SubmitTask));
+function mapDispatchToProps(dispatch: any) {
+  return {
+    redirectUser: bindActionCreators(userRedirectRequsetAction, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withRouter(SubmitTask));

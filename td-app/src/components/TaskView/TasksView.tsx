@@ -5,13 +5,13 @@ import TaskAdd from "../TaskAdd/TaskAdd";
 import { TasksViewProps } from "../../models/interfaces";
 import AppExit from "../AppExit/AppExit";
 
-function TasksView({ database, handleUserOut }: TasksViewProps) {
+function TasksView({ database }: TasksViewProps) {
   return (
     <div className="App">
       <Nav date={new Date()} />
       <TaskAdd />
       <List database={database} />
-      <AppExit handleUserOut={handleUserOut} />
+      <AppExit />
     </div>
   );
 }

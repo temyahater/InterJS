@@ -1,21 +1,38 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import {
-  handleLocationChange,
-  submitURL,
-} from "../../services/ConstsHandles/AppConsts";
+import { bindActionCreators } from "redux";
+import { TaskAddProps } from "../../models/interfaces";
+import { submitURL } from "../../services/Database/database-calls";
+import userRedirectRequsetAction from "../../store/actions/user-redirect-request";
 import "./TaskAdd.css";
 
-const TaskAdd = ({ history }: RouteComponentProps) => {
+const TaskAdd = ({
+  history,
+  redirectUser,
+}: TaskAddProps & RouteComponentProps) => {
   const handleAddTaskClick = () => {
-    handleLocationChange(history, submitURL);
+    redirectUser(history, submitURL);
   };
 
   return (
     <div className="task-add">
-      <div role="button" tabIndex={0} onKeyDown={handleAddTaskClick} onClick={handleAddTaskClick}>+ Task</div>
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={handleAddTaskClick}
+        onClick={handleAddTaskClick}
+      >
+        + Task
+      </div>
     </div>
   );
 };
 
-export default withRouter(TaskAdd);
+function mapDispatchToProps(dispatch: any) {
+  return {
+    redirectUser: bindActionCreators(userRedirectRequsetAction, dispatch),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(TaskAdd));

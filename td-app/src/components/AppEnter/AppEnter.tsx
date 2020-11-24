@@ -3,27 +3,26 @@ import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { AppEnterProps } from "../../models/interfaces";
-import {
-  handleLocationChange,
-  tasksURL,
-} from "../../services/ConstsHandles/AppConsts";
+import { tasksURL } from "../../services/Database/database-calls";
 import { auth } from "../../services/Firebase/Firebase";
-import userRequsetAction from "../../store/actions/user-request";
+import userEnterRequsetAction from "../../store/actions/user-enter-request";
+import userRedirectRequsetAction from "../../store/actions/user-redirect-request";
+import userRegisterRequsetAction from "../../store/actions/user-register-request";
 import "./AppEnter.css";
 
 const AppEnter = ({
-  handleUserRegister,
-  handleUserEnter,
   history,
-  loadUser,
+  enterUser,
+  registerUser,
+  redirectUser,
 }: AppEnterProps & RouteComponentProps) => {
   React.useEffect(() => {
     auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        handleLocationChange(history, tasksURL);
+        redirectUser(history, tasksURL);
       }
     });
-  });
+  }, [redirectUser, history]);
 
   const [checkRegister, setRegister] = React.useState(false);
   const [userInfo, setUserInfo] = React.useState({ email: "", password: "" });
@@ -48,23 +47,15 @@ const AppEnter = ({
 
   const handleEnterClick = () => {
     if (checkRegister) {
-      handleUserRegister(history, {
+      registerUser(auth, {
         email: userInfo.email,
         password: userInfo.password,
-      })
-        .then(() => loadUser(auth))
-        .catch((err: Error) => {
-          alert(err.message);
-        });
+      });
     } else {
-      handleUserEnter(history, {
+      enterUser(auth, {
         email: userInfo.email,
         password: userInfo.password,
-      })
-        .then(() => loadUser(auth))
-        .catch((err: Error) => {
-          alert(err.message);
-        });
+      });
       setUserInfo({ email: userInfo.email, password: "" });
     }
   };
@@ -111,7 +102,11 @@ const AppEnter = ({
 };
 
 function mapDispatchToProps(dispatch: any) {
-  return { loadUser: bindActionCreators(userRequsetAction, dispatch) };
+  return {
+    enterUser: bindActionCreators(userEnterRequsetAction, dispatch),
+    registerUser: bindActionCreators(userRegisterRequsetAction, dispatch),
+    redirectUser: bindActionCreators(userRedirectRequsetAction, dispatch),
+  };
 }
 
 export default connect(null, mapDispatchToProps)(withRouter(AppEnter));
