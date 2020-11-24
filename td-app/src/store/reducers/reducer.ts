@@ -1,4 +1,4 @@
-import { StoreObject, StateObject } from "../../models/interfaces";
+import { StateObject, StoreObject } from "../../models/interfaces";
 import { database } from "../../services/Firebase/Firebase";
 
 const initialState = {
@@ -18,9 +18,6 @@ export default function reducer(state: StateObject | undefined, action: StoreObj
       return { ...state, user: action.user };
     case "TASKS_UPDATE":
       return { ...state, tasks: action.tasks };
-    case "TEST":
-      console.log("test");
-      return state;
     default:
       return state;
   }

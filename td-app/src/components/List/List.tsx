@@ -2,7 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ListProps, StateList } from "../../models/interfaces";
-import tasksAction from "../../store/actions/tasks";
+import { deleteTask } from "../../services/Database/database-calls";
+import tasksRequsetAction from "../../store/actions/tasks-request";
 import ListElement from "../ListElement/ListElement";
 import "./List.css";
 
@@ -10,19 +11,11 @@ const List = ({
   tasks, user, database, loadTasks,
 }: ListProps) => {
   const handleTaskDeleteClick = (id: string) => {
-    database
-      .ref(`/users/${user}/tasks`)
-      .child(id)
-      .remove()
-      .then(() => handleTasksUpdate());
+    deleteTask(database, user, id).then(() => handleTasksUpdate());
   };
 
   const handleTasksUpdate = React.useCallback(() => {
-    database.ref(`/users/${user}/tasks`).on("value", (data) => {
-      if (data.val()) {
-        loadTasks(Object.entries(data.val()));
-      }
-    });
+    loadTasks(database, user);
   }, [database, user, loadTasks]);
 
   React.useEffect(() => handleTasksUpdate(), [handleTasksUpdate]);
@@ -46,7 +39,7 @@ function mapStateToProps(state: StateList) {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return { loadTasks: bindActionCreators(tasksAction, dispatch) };
+  return { loadTasks: bindActionCreators(tasksRequsetAction, dispatch) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

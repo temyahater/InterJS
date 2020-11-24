@@ -38,6 +38,7 @@ export interface TasksSubmitProps {
 export interface AppEnterProps {
   handleUserRegister: Function;
   handleUserEnter: Function;
+  loadUser: Function;
 }
 
 export interface AppExitProps {

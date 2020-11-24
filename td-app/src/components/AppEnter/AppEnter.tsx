@@ -1,14 +1,21 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import { AppEnterProps } from "../../models/interfaces";
-import { handleLocationChange, tasksURL } from "../../services/ConstsHandles/AppConsts";
+import {
+  handleLocationChange,
+  tasksURL,
+} from "../../services/ConstsHandles/AppConsts";
 import { auth } from "../../services/Firebase/Firebase";
+import userRequsetAction from "../../store/actions/user-request";
 import "./AppEnter.css";
 
 const AppEnter = ({
   handleUserRegister,
   handleUserEnter,
   history,
+  loadUser,
 }: AppEnterProps & RouteComponentProps) => {
   React.useEffect(() => {
     auth.onAuthStateChanged((currentUser) => {
@@ -44,12 +51,20 @@ const AppEnter = ({
       handleUserRegister(history, {
         email: userInfo.email,
         password: userInfo.password,
-      });
+      })
+        .then(() => loadUser(auth))
+        .catch((err: Error) => {
+          alert(err.message);
+        });
     } else {
       handleUserEnter(history, {
         email: userInfo.email,
         password: userInfo.password,
-      });
+      })
+        .then(() => loadUser(auth))
+        .catch((err: Error) => {
+          alert(err.message);
+        });
       setUserInfo({ email: userInfo.email, password: "" });
     }
   };
@@ -95,4 +110,8 @@ const AppEnter = ({
   );
 };
 
-export default withRouter(AppEnter);
+function mapDispatchToProps(dispatch: any) {
+  return { loadUser: bindActionCreators(userRequsetAction, dispatch) };
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(AppEnter));

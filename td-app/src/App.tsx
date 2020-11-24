@@ -12,17 +12,11 @@ import "./App.css";
 import TasksSubmit from "./components/TaskSubmit/TasksSubmit";
 import TasksView from "./components/TaskView/TasksView";
 import Auth from "./components/Auth/Auth";
-import userAction from "./store/actions/user";
 import { StateApp } from "./models/interfaces";
+import userRequsetAction from "./store/actions/user-request";
 
 function App({ loadUser }: StateApp) {
-  const handleUserUpdate = React.useCallback(() => {
-    auth.onAuthStateChanged((currentUser) => {
-      if (currentUser) {
-        loadUser(currentUser.uid);
-      }
-    });
-  }, [loadUser]);
+  const handleUserUpdate = React.useCallback(() => loadUser(auth), [loadUser]);
 
   React.useEffect(() => handleUserUpdate(), [handleUserUpdate]);
 
@@ -47,7 +41,7 @@ function App({ loadUser }: StateApp) {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return { loadUser: bindActionCreators(userAction, dispatch) };
+  return { loadUser: bindActionCreators(userRequsetAction, dispatch) };
 }
 
 export default connect(null, mapDispatchToProps)(App);

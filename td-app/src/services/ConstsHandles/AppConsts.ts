@@ -10,23 +10,13 @@ export const handleLocationChange = (history: History, url: string) => {
   history.push(url);
 };
 
-export const handleUserRegister = (history: History, user: User) => {
-  auth
-    .createUserWithEmailAndPassword(user.email || "", user.password || "")
-    .then(() => history.push(tasksURL))
-    .catch((err) => {
-      alert(err.message);
-    });
-};
+export const handleUserRegister = (history: History, user: User) => auth
+  .createUserWithEmailAndPassword(user.email || "", user.password || "")
+  .then(() => history.push(tasksURL));
 
-export const handleUserEnter = (history: History, user: User) => {
-  auth
-    .signInWithEmailAndPassword(user.email || "", user.password || "")
-    .then(() => history.push(tasksURL))
-    .catch((err) => {
-      alert(err.message);
-    });
-};
+export const handleUserEnter = (history: History, user: User) => auth
+  .signInWithEmailAndPassword(user.email || "", user.password || "")
+  .then(() => history.push(tasksURL));
 
 export const handleUserOut = (history: History) => {
   auth
