@@ -34,16 +34,21 @@
 
 .list .list-element .list-element-remove {
   min-width: 5%;
-  height: 90%;
+  /* height: 90%; */
   background: rgb(139, 139, 139);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 10%;
   transition: 0.3s ease-in-out;
+  border: none;
+  outline: none;
 }
 
 .list .list-element .list-element-remove:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.list .list-element .list-element-remove:active {
+  box-shadow: none;
+  background: rgb(221, 15, 15);
   cursor: pointer;
 }

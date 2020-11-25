@@ -1,5 +1,5 @@
-const type = "TASKS_UPDATE";
+export const typeTasks = "TASKS_UPDATE";
 
-export default function tasksAction(tasks: Array<Array<Object>>) {
-  return { type, tasks };
+export function tasksAction(tasks: Array<Array<Object>>) {
+  return { type: typeTasks, tasks };
 }

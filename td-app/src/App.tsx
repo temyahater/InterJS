@@ -8,7 +8,7 @@ import TasksSubmit from "./components/TaskSubmit/TasksSubmit";
 import TasksView from "./components/TaskView/TasksView";
 import Auth from "./components/Auth/Auth";
 import { StateApp } from "./models/interfaces";
-import userRequsetAction from "./store/actions/user-request";
+import { userRequestAction } from "./store/actions/user-request";
 
 function App({ loadUser }: StateApp) {
   const handleUserUpdate = React.useCallback(() => loadUser(auth), [loadUser]);
@@ -33,7 +33,7 @@ function App({ loadUser }: StateApp) {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return { loadUser: bindActionCreators(userRequsetAction, dispatch) };
+  return { loadUser: bindActionCreators(userRequestAction, dispatch) };
 }
 
 export default connect(null, mapDispatchToProps)(App);

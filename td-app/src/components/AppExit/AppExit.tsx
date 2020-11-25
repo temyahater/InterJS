@@ -4,32 +4,27 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { AppExitProps } from "../../models/interfaces";
 import { auth } from "../../services/Firebase/Firebase";
-import userExitRequsetAction from "../../store/actions/user-exit-request";
+import { userExitRequestAction } from "../../store/actions/user-exit-request";
 import "./AppExit.css";
 
 const AppExit = ({ history, userExit }: AppExitProps & RouteComponentProps) => {
   const handleExitClick = () => {
-    if (window.confirm("Are you shure?")) {
+    if (window.confirm("Are you sure?")) {
       userExit(auth, history);
     }
   };
 
   return (
     <div className="app-exit">
-      <div
-        role="button"
-        onClick={handleExitClick}
-        onKeyDown={handleExitClick}
-        tabIndex={0}
-      >
+      <button type="button" onClick={handleExitClick}>
         Exit
-      </div>
+      </button>
     </div>
   );
 };
 
 function mapDispatchToProps(dispatch: any) {
-  return { userExit: bindActionCreators(userExitRequsetAction, dispatch) };
+  return { userExit: bindActionCreators(userExitRequestAction, dispatch) };
 }
 
 export default connect(null, mapDispatchToProps)(withRouter(AppExit));

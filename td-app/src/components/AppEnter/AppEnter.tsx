@@ -5,9 +5,9 @@ import { bindActionCreators } from "redux";
 import { AppEnterProps } from "../../models/interfaces";
 import { tasksURL } from "../../services/Database/database-calls";
 import { auth } from "../../services/Firebase/Firebase";
-import userEnterRequsetAction from "../../store/actions/user-enter-request";
-import userRedirectRequsetAction from "../../store/actions/user-redirect-request";
-import userRegisterRequsetAction from "../../store/actions/user-register-request";
+import { userEnterRequestAction } from "../../store/actions/user-enter-request";
+import { userRedirectRequestAction } from "../../store/actions/user-redirect-request";
+import { userRegisterRequestAction } from "../../store/actions/user-register-request";
 import "./AppEnter.css";
 
 const AppEnter = ({
@@ -103,9 +103,9 @@ const AppEnter = ({
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    enterUser: bindActionCreators(userEnterRequsetAction, dispatch),
-    registerUser: bindActionCreators(userRegisterRequsetAction, dispatch),
-    redirectUser: bindActionCreators(userRedirectRequsetAction, dispatch),
+    enterUser: bindActionCreators(userEnterRequestAction, dispatch),
+    registerUser: bindActionCreators(userRegisterRequestAction, dispatch),
+    redirectUser: bindActionCreators(userRedirectRequestAction, dispatch),
   };
 }
 

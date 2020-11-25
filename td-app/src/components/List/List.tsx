@@ -2,16 +2,17 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ListProps, StateList } from "../../models/interfaces";
-import { deleteTask } from "../../services/Database/database-calls";
-import tasksRequsetAction from "../../store/actions/tasks-request";
+import { taskDeleteRequestAction } from "../../store/actions/task-delete-request";
+import { tasksRequestAction } from "../../store/actions/tasks-request";
 import ListElement from "../ListElement/ListElement";
 import "./List.css";
 
 const List = ({
-  tasks, user, database, loadTasks,
+  tasks, user, database, loadTasks, deleteTask,
 }: ListProps) => {
   const handleTaskDeleteClick = (id: string) => {
-    deleteTask(database, user, id).then(() => handleTasksUpdate());
+    deleteTask(database, user, id);
+    handleTasksUpdate();
   };
 
   const handleTasksUpdate = React.useCallback(() => {
@@ -39,7 +40,10 @@ function mapStateToProps(state: StateList) {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return { loadTasks: bindActionCreators(tasksRequsetAction, dispatch) };
+  return {
+    loadTasks: bindActionCreators(tasksRequestAction, dispatch),
+    deleteTask: bindActionCreators(taskDeleteRequestAction, dispatch),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

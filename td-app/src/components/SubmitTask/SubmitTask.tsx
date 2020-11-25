@@ -4,7 +4,8 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { StateSubmit, SubmitTaskProps } from "../../models/interfaces";
 import { tasksURL } from "../../services/Database/database-calls";
-import userRedirectRequsetAction from "../../store/actions/user-redirect-request";
+import { taskAddRequestAction } from "../../store/actions/task-add-request";
+import { userRedirectRequestAction } from "../../store/actions/user-redirect-request";
 import "./SubmitTask.css";
 
 const SubmitTask = ({
@@ -12,15 +13,12 @@ const SubmitTask = ({
   history,
   user,
   redirectUser,
+  addTask,
 }: SubmitTaskProps & RouteComponentProps) => {
   const [inputValue, setInputValue] = React.useState("");
 
   const handleInputValue = (event: { target: HTMLInputElement }) => {
     setInputValue(event.target.value);
-  };
-
-  const handleTasksAddClick = (task: Object) => {
-    database.ref(`/users/${user}/tasks`).push().set(task);
   };
 
   const handleClickSubmit = () => {
@@ -32,7 +30,7 @@ const SubmitTask = ({
         date: date.toLocaleDateString(),
         task: taskText,
       };
-      handleTasksAddClick(taskSubmit);
+      addTask(database, user, taskSubmit);
     }
     setInputValue("");
   };
@@ -45,7 +43,7 @@ const SubmitTask = ({
 
   const handleViewTasks = () => {
     if (inputValue) {
-      if (window.confirm("Are you shure? Input is not empty.")) {
+      if (window.confirm("Are you sure? Input is not empty.")) {
         redirectUser(history, tasksURL);
       }
     } else {
@@ -81,7 +79,8 @@ function mapStateToProps(state: StateSubmit) {
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    redirectUser: bindActionCreators(userRedirectRequsetAction, dispatch),
+    redirectUser: bindActionCreators(userRedirectRequestAction, dispatch),
+    addTask: bindActionCreators(taskAddRequestAction, dispatch),
   };
 }
 

@@ -1,5 +1,4 @@
 .app-exit {
-  font-size: 2vw;
   width: 100%;
   text-align: center;
   transition: 0.3s ease-in-out;
@@ -9,4 +8,12 @@
 .app-exit:hover {
   background: rgb(201, 201, 201);
   cursor: pointer;
+}
+
+.app-exit button {
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 2vw;
+  width: 100%;
 }

@@ -1,15 +1,10 @@
 import { takeEvery, call, put } from "redux-saga/effects";
+import { UserSaga } from "../../models/interfaces";
 import { getUser } from "../../services/Database/database-calls";
-import userAction from "../actions/user";
+import { userAction } from "../actions/user";
+import { type } from "../actions/user-request";
 
-const requestUser = "USER_REQUEST";
-
-interface User {
-  auth: object;
-  type: string;
-}
-
-function* userRequest(action: User) {
+function* userRequest(action: UserSaga) {
   try {
     const data = yield call(getUser, action.auth);
     yield put(userAction(data));
@@ -20,5 +15,5 @@ function* userRequest(action: User) {
 }
 
 export default function* userSaga() {
-  yield takeEvery(requestUser, userRequest);
+  yield takeEvery(type, userRequest);
 }

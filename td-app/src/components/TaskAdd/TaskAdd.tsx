@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { TaskAddProps } from "../../models/interfaces";
 import { submitURL } from "../../services/Database/database-calls";
-import userRedirectRequsetAction from "../../store/actions/user-redirect-request";
+import { userRedirectRequestAction } from "../../store/actions/user-redirect-request";
 import "./TaskAdd.css";
 
 const TaskAdd = ({
@@ -17,21 +17,16 @@ const TaskAdd = ({
 
   return (
     <div className="task-add">
-      <div
-        role="button"
-        tabIndex={0}
-        onKeyDown={handleAddTaskClick}
-        onClick={handleAddTaskClick}
-      >
+      <button type="button" onClick={handleAddTaskClick}>
         + Task
-      </div>
+      </button>
     </div>
   );
 };
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    redirectUser: bindActionCreators(userRedirectRequsetAction, dispatch),
+    redirectUser: bindActionCreators(userRedirectRequestAction, dispatch),
   };
 }
 

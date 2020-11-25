@@ -1,17 +1,10 @@
 /* eslint-disable no-console */
-import { History } from "history";
 import { takeEvery, call } from "redux-saga/effects";
+import { UserRedirectSaga } from "../../models/interfaces";
 import { handleLocationChange } from "../../services/Database/database-calls";
+import { type } from "../actions/user-redirect-request";
 
-const requestUser = "USER_REDIRECT_REQUEST";
-
-interface UserSaga {
-  history: History;
-  url: string;
-  type: string;
-}
-
-function* userRedirectRequest(action: UserSaga) {
+function* userRedirectRequest(action: UserRedirectSaga) {
   try {
     yield call(handleLocationChange, action.history, action.url);
   } catch (e) {
@@ -20,5 +13,5 @@ function* userRedirectRequest(action: UserSaga) {
 }
 
 export default function* userRedirectSaga() {
-  yield takeEvery(requestUser, userRedirectRequest);
+  yield takeEvery(type, userRedirectRequest);
 }

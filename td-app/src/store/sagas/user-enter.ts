@@ -1,26 +1,19 @@
 /* eslint-disable no-console */
 import { takeEvery, call, put } from "redux-saga/effects";
-import { User } from "../../models/interfaces";
+import { UserEnterSaga } from "../../models/interfaces";
 import { handleUserEnter } from "../../services/Database/database-calls";
-import userAction from "../actions/user";
+import { userAction } from "../actions/user";
+import { type } from "../actions/user-enter-request";
 
-const requestUser = "USER_ENTER_REQUEST";
-
-interface UserSaga {
-  user: User;
-  auth: object;
-  type: string;
-}
-
-function* userEnterRequest(action: UserSaga) {
+function* userEnterRequest(action: UserEnterSaga) {
   try {
     const data = yield call(handleUserEnter, action.auth, action.user);
-    yield data ? put(userAction(data.user.uid)) : console.log("Error enter, chek error info.");
+    yield data ? put(userAction(data.user.uid)) : console.log("Error enter, check error info.");
   } catch (e) {
     console.log(e);
   }
 }
 
 export default function* userEnterSaga() {
-  yield takeEvery(requestUser, userEnterRequest);
+  yield takeEvery(type, userEnterRequest);
 }

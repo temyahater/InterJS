@@ -1,5 +1,5 @@
-const type = "USER_UPDATE";
+export const typeUser = "USER_UPDATE";
 
-export default function userAction(user: string) {
-  return { type, user };
+export function userAction(user: string) {
+  return { type: typeUser, user };
 }

@@ -1,19 +1,12 @@
 /* eslint-disable no-console */
-import { History } from "history";
 import { takeEvery, call, put } from "redux-saga/effects";
+import { UserExitSaga } from "../../models/interfaces";
 import { handleUserOut } from "../../services/Database/database-calls";
-import tasksAction from "../actions/tasks";
-import userAction from "../actions/user";
+import { tasksAction } from "../actions/tasks";
+import { userAction } from "../actions/user";
+import { type } from "../actions/user-exit-request";
 
-const requestUser = "USER_EXIT_REQUEST";
-
-interface UserSaga {
-  history: History;
-  auth: object;
-  type: string;
-}
-
-function* userExitRequest(action: UserSaga) {
+function* userExitRequest(action: UserExitSaga) {
   try {
     yield call(handleUserOut, action.auth, action.history);
     yield put(userAction(""));
@@ -24,5 +17,5 @@ function* userExitRequest(action: UserSaga) {
 }
 
 export default function* userExitSaga() {
-  yield takeEvery(requestUser, userExitRequest);
+  yield takeEvery(type, userExitRequest);
 }

@@ -1,5 +1,5 @@
-const type = "USER_REQUEST";
+export const type = "USER_REQUEST";
 
-export default function userRequsetAction(auth: object) {
+export function userRequestAction(auth: object) {
   return { type, auth };
 }

@@ -1,5 +1,5 @@
 import { History } from "history";
-import { User } from "../../models/interfaces";
+import { Task, User } from "../../models/interfaces";
 
 export const tasksURL = "/tasks";
 export const submitURL = "/submit";
@@ -9,10 +9,15 @@ export function getTasks(database: any, user: string) {
   return database.ref(`/users/${user}/tasks`).once("value").then((data: object) => data);
 }
 
-export const deleteTask = (database: any, user: string, id: string) => database
+export const handleTaskDelete = (database: any, user: string, id: string) => database
   .ref(`/users/${user}/tasks`)
   .child(id)
-  .remove();
+  .remove()
+  .catch((err: Error) => alert(err.message));
+
+export const handleTasksAddClick = (database: any, user: string, task: Task) => {
+  database.ref(`/users/${user}/tasks`).push().set(task);
+};
 
 // eslint-disable-next-line no-unused-vars
 export const getUser = (auth: any) => new Promise((res, rej) => auth

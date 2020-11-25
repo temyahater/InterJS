@@ -1,5 +1,5 @@
-const type = "TASKS_REQUEST";
+export const type = "TASKS_REQUEST";
 
-export default function tasksRequsetAction(database: object, user: string) {
+export function tasksRequestAction(database: object, user: string) {
   return { type, database, user };
 }

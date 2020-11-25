@@ -1,16 +1,10 @@
 import { takeEvery, call, put } from "redux-saga/effects";
+import { TaskSaga } from "../../models/interfaces";
 import { getTasks } from "../../services/Database/database-calls";
-import tasksAction from "../actions/tasks";
+import { tasksAction } from "../actions/tasks";
+import { type } from "../actions/tasks-request";
 
-const requestTasks = "TASKS_REQUEST";
-
-interface Task {
-  database: object;
-  user: string;
-  type: string;
-}
-
-function* tasksRequest(action: Task) {
+function* tasksRequest(action: TaskSaga) {
   try {
     const data = yield call(getTasks, action.database, action.user);
     yield put(tasksAction(Object.entries(data.val() || {})));
@@ -21,5 +15,5 @@ function* tasksRequest(action: Task) {
 }
 
 export default function* tasksSaga() {
-  yield takeEvery(requestTasks, tasksRequest);
+  yield takeEvery(type, tasksRequest);
 }

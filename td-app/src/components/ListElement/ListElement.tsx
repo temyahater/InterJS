@@ -11,15 +11,13 @@ const ListElement = ({
     <div className="list-element-date">{task.date}</div>
     <div className="list-element-task">
       <div>{task.task}</div>
-      <div
-        role="button"
-        tabIndex={0}
+      <button
+        type="button"
         className="list-element-remove"
         onClick={() => handleTaskDeleteClick(databaseTaskId)}
-        onKeyDown={() => handleTaskDeleteClick(databaseTaskId)}
       >
         X
-      </div>
+      </button>
     </div>
   </div>
 );

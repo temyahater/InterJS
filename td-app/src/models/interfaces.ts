@@ -1,4 +1,54 @@
+import { History } from "history";
 import { database } from "../services/Firebase/Firebase";
+
+export interface TaskSaga {
+  database: typeof database;
+  user: string;
+  type: string;
+}
+
+export interface TaskAddSaga {
+  database: typeof database;
+  user: string;
+  task: Task;
+  type: string;
+}
+
+export interface TaskDeleteSaga {
+  database: typeof database;
+  user: string;
+  id: string;
+  type: string;
+}
+
+export interface UserEnterSaga {
+  user: User;
+  auth: object;
+  type: string;
+}
+
+export interface UserExitSaga {
+  history: History;
+  auth: object;
+  type: string;
+}
+
+export interface UserRedirectSaga {
+  history: History;
+  url: string;
+  type: string;
+}
+
+export interface UserRegisterSaga {
+  user: User;
+  auth: object;
+  type: string;
+}
+
+export interface UserSaga {
+  auth: object;
+  type: string;
+}
 
 export interface StateApp {
   loadUser: Function;
@@ -53,6 +103,7 @@ export interface SubmitTaskProps {
   database: typeof database;
   user: string;
   redirectUser: Function;
+  addTask: Function;
 }
 
 export interface TaskAddProps {
@@ -69,6 +120,7 @@ export interface ListProps {
   dispatch: Function;
   database: typeof database;
   loadTasks: Function;
+  deleteTask: Function;
 }
 
 export interface User {
@@ -76,7 +128,7 @@ export interface User {
   password: string;
 }
 
-interface Task {
+export interface Task {
   id?: string;
   date?: string;
   task?: string;
